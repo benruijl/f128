@@ -441,6 +441,33 @@ impl Inv for f128 {
     }
 }
 
+impl Signed for f128 {
+    #[inline]
+    fn abs(&self) -> Self {
+        <Self as Float>::abs(*self)
+    }
+
+    #[inline]
+    fn abs_sub(&self, rhs: &Self) -> Self {
+        <Self as Float>::abs_sub(*self, *rhs)
+    }
+
+    #[inline]
+    fn signum(&self) -> Self {
+        <Self as Float>::signum(*self)
+    }
+
+    #[inline]
+    fn is_positive(&self) -> bool {
+        self.is_sign_positive()
+    }
+
+    #[inline]
+    fn is_negative(&self) -> bool {
+        self.is_sign_negative()
+    }
+}
+
 impl Float for f128 {
     #[inline]
     fn nan() -> Self {
