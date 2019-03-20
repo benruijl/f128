@@ -527,6 +527,159 @@ impl FloatConst for f128 {
     }
 }
 
+impl num_traits::float::FloatCore for f128 {
+    #[inline]
+    fn epsilon() -> Self {
+        f128::EPSILON
+    }
+
+    #[inline]
+    fn to_degrees(self) -> Self {
+        unimplemented!()
+    }
+
+    #[inline]
+    fn to_radians(self) -> Self {
+        unimplemented!()
+    }
+
+    #[inline]
+    fn nan() -> Self {
+        f128::NAN
+    }
+
+    #[inline]
+    fn infinity() -> Self {
+        f128::INFINITY
+    }
+
+    #[inline]
+    fn neg_infinity() -> Self {
+        f128::NEG_INFINITY
+    }
+
+    #[inline]
+    fn neg_zero() -> Self {
+        f128::NEG_ZERO
+    }
+
+    #[inline]
+    fn min_value() -> f128 {
+        f128::MIN
+    }
+
+    #[inline]
+    fn max_value() -> f128 {
+        f128::MAX
+    }
+
+    #[inline]
+    fn min_positive_value() -> f128 {
+        f128::MIN_POSITIVE
+    }
+
+    #[inline]
+    fn is_finite(self) -> bool {
+        Float::is_finite(self)
+    }
+
+    #[inline]
+    fn is_infinite(self) -> bool {
+        Float::is_infinite(self)
+    }
+
+    #[inline]
+    fn is_nan(self) -> bool {
+        Float::is_nan(self)
+    }
+
+    #[inline]
+    fn is_normal(self) -> bool {
+        Float::is_normal(self)
+    }
+
+    #[inline]
+    fn classify(self) -> FpCategory {
+        Float::classify(self)
+    }
+
+    #[inline]
+    fn floor(self) -> Self {
+        Float::floor(self)
+    }
+
+    #[inline]
+    fn ceil(self) -> Self {
+        Float::ceil(self)
+    }
+
+    #[inline]
+    fn round(self) -> Self {
+        Float::round(self)
+    }
+
+    #[inline]
+    fn trunc(self) -> Self {
+        Float::trunc(self)
+    }
+
+    #[inline]
+    fn fract(self) -> Self {
+        Float::fract(self)
+    }
+
+    #[cfg(target_endian = "big")]
+    #[inline]
+    fn abs(mut self) -> Self {
+        Float::abs(self)
+    }
+    #[cfg(target_endian = "little")]
+    #[inline]
+    fn abs(mut self) -> Self {
+        Float::abs(self)
+    }
+
+    #[inline]
+    fn signum(self) -> Self {
+        Float::signum(self)
+    }
+
+    #[inline]
+    fn is_sign_negative(self) -> bool {
+        Float::is_sign_negative(self)
+    }
+
+    #[inline]
+    fn is_sign_positive(self) -> bool {
+        Float::is_sign_positive(self)
+    }
+
+    #[inline]
+    fn recip(self) -> f128 {
+        f128::ONE / self
+    }
+
+    #[inline]
+    fn powi(self, n: i32) -> f128 {
+        Float::powi(self, n)
+    }
+
+    #[inline]
+    fn max(self, other: f128) -> f128 {
+        Float::max(self, other)
+    }
+
+    #[inline]
+    fn min(self, other: f128) -> f128 {
+        Float::min(self, other)
+    }
+
+    #[inline]
+    fn integer_decode(self) -> (u64, i16, i8) {
+        unimplemented!("This function cannot be accurately implemented with num v0.2.6 - the mantissa type needs to be upped to u128.")
+    }
+}
+
 impl Float for f128 {
     #[inline]
     fn nan() -> Self {
