@@ -257,6 +257,13 @@ impl Rem<f128> for f128 {
     }
 }
 
+impl RemAssign for f128 {
+    #[inline]
+    fn rem_assign(&mut self, other: f128) {
+        *self = *self % other;
+    }
+}
+
 impl<'a> Rem<&'a f128> for f128 {
     type Output = f128;
 
