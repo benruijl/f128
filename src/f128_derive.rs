@@ -264,29 +264,7 @@ impl RemAssign for f128 {
     }
 }
 
-impl<'a> Rem<&'a f128> for f128 {
-    type Output = f128;
-
-    fn rem(self, other: &'a f128) -> f128 {
-        unsafe { ffi::fmodq_f(self, *other) }
-    }
-}
-
-impl<'a, 'b> Rem<&'a f128> for &'b f128 {
-    type Output = f128;
-
-    fn rem(self, other: &'a f128) -> f128 {
-        unsafe { ffi::fmodq_f(*self, *other) }
-    }
-}
-
-impl<'a> Rem<f128> for &'a f128 {
-    type Output = f128;
-
-    fn rem(self, other: f128) -> f128 {
-        unsafe { ffi::fmodq_f(*self, other) }
-    }
-}
+forward_ref_binop! { impl Rem, rem for f128, f128 }
 
 impl Sum for f128 {
     fn sum<I: Iterator<Item = f128>>(iter: I) -> f128 {
