@@ -277,6 +277,14 @@ impl fmt::Display for f128 {
     }
 }
 
+impl fmt::LowerExp for f128 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // FIXME: use actual format string and do not
+        // allocate a string
+        write!(f, "{}", self.to_string())
+    }
+}
+
 impl Zero for f128 {
     #[inline]
     fn is_zero(&self) -> bool {
@@ -465,6 +473,57 @@ impl Signed for f128 {
     #[inline]
     fn is_negative(&self) -> bool {
         self.is_sign_negative()
+    }
+}
+
+impl FloatConst for f128 {
+    fn E() -> Self {
+        f128::E
+    }
+    fn FRAC_1_PI() -> Self {
+        f128::PI.inv()
+    }
+    fn FRAC_1_SQRT_2() -> Self {
+        unimplemented!();
+    }
+    fn FRAC_2_PI() -> Self {
+        f128::new(2.0) / f128::PI
+    }
+    fn FRAC_2_SQRT_PI() -> Self {
+        unimplemented!();
+    }
+    fn FRAC_PI_2() -> Self {
+        f128::PI / f128::new(2.0)
+    }
+    fn FRAC_PI_3() -> Self {
+        f128::PI / f128::new(3.0)
+    }
+    fn FRAC_PI_4() -> Self {
+        f128::PI / f128::new(4.0)
+    }
+    fn FRAC_PI_6() -> Self {
+        f128::PI / f128::new(6.0)
+    }
+    fn FRAC_PI_8() -> Self {
+        f128::PI / f128::new(8.0)
+    }
+    fn LN_10() -> Self {
+        unimplemented!();
+    }
+    fn LN_2() -> Self {
+        unimplemented!();
+    }
+    fn LOG10_E() -> Self {
+        unimplemented!();
+    }
+    fn LOG2_E() -> Self {
+        unimplemented!();
+    }
+    fn PI() -> Self {
+        f128::PI
+    }
+    fn SQRT_2() -> Self {
+        unimplemented!();
     }
 }
 
