@@ -281,7 +281,7 @@ impl fmt::LowerExp for f128 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         // FIXME: use actual format string and do not
         // allocate a string
-        write!(f, "{}", self.to_string())
+        write!(f, "{}", self.to_string_fmt("%.36Qe").unwrap())
     }
 }
 
