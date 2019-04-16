@@ -288,7 +288,7 @@ impl fmt::LowerExp for f128 {
 impl Zero for f128 {
     #[inline]
     fn is_zero(&self) -> bool {
-        self.0 == f128::ZERO.0
+        self.0 == f128::ZERO.0 || self.0 == f128::NEG_ZERO.0
     }
     #[inline]
     fn zero() -> Self {
