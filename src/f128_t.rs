@@ -678,6 +678,11 @@ impl num_traits::float::FloatCore for f128 {
 
 impl Float for f128 {
     #[inline]
+    fn epsilon() -> Self {
+        f128::EPSILON
+    }
+
+    #[inline]
     fn nan() -> Self {
         f128::NAN
     }
